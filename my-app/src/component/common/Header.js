@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../../project.svg";
+//import logo from "../../restaurant.svg";
 import { FiMenu } from "react-icons/fi";
 import { FaRegUserCircle } from "react-icons/fa";
 import { withRouter,Link } from "react-router-dom";
@@ -32,34 +32,34 @@ class HomePage extends Component {
           <FiMenu className="navbar-icon" />
         </div>
         <div className="title-with-logo" onClick={() => this.handleClick()}>
-          <img src={logo} className="app-logo" alt="logo" />
-          <h2 className="header-title">Project App</h2>
+          <img  className="app-logo" alt="logo" />
+          <h2 className="header-title">Dans le Meal</h2>
         </div>
         <div>
           <FaRegUserCircle className="navbar-icon" />
         </div>
         {this.state.navbarOpen &&
           <div className="sidebar">
-            <h2>Project APP</h2>
+            <h2>Menu</h2>
             <ul className="sidebar-list">
               <li>
                 <Link onClick={() => this.toggleNavbar()} to="/home">
-                  Home
+                  Home Page
                 </Link>
               </li>
               <li>
                 <Link onClick={() => this.toggleNavbar()} to="/me">
-                  Profile
+                  Profile Page
                 </Link>
               </li>
               <li>
-                <Link onClick={() => this.toggleNavbar()} to="/projects">
-                  Projects
+                <Link onClick={() => this.toggleNavbar()} to="/restaurants">
+                  Restaurants Page
                 </Link>
               </li>
               <li>
-                <Link onClick={() => this.toggleNavbar()} to="/tasks">
-                  Tasks
+                <Link onClick={() => this.toggleNavbar()} to="/meals">
+                  Meals Page
                 </Link>
               </li>
             </ul>

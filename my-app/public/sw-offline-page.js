@@ -30,16 +30,16 @@ self.addEventListener('fetch', function(evt) {
 //Example pour notification push ==> https://webpushdemo.azurewebsites.net/
 self.addEventListener('push', function(event) {
   event.waitUntil(
-      registration.showNotification('Project App notification TEST', {
+      registration.showNotification('Dans le Meal notification TEST', {
           body: event.data ? event.data.text() : 'no payload',
-          icon: 'my-app/public/assets/logo/mipmap-hdpi/ic_project.png'
+          icon: 'my-app/public/assets/logo/mipmap-hdpi/ic_restaurant.png'
       })
   );
 });
 
 self.addEventListener('notificationclick', function(event) {
   event.notification.close();
-  event.waitUntil(clients.openWindow('http://localhost:3006/projects'));
+  event.waitUntil(clients.openWindow('http://localhost:3006/restaurants'));
 });
 
 // Open a cache and use `addAll()` with an array of assets to add all of them
@@ -48,8 +48,8 @@ function precache() {
   return caches.open(CACHE).then(function (cache) {
     return cache.addAll([
       './index.html',
-      '/assets/logo/project.svg',
-      '/static/media/project.240f45f8.svg',
+      '/assets/logo/restaurant.svg',
+      '/static/media/restaurant.240f45f8.svg',
       './offline.html'
     ]);
   });

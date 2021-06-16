@@ -1,14 +1,14 @@
 {
-  "short_name": "Project App",
-  "name": "ProjectApp",
-  "description": "This app permit to manage project.",
+  "short_name": "Dans le Meal",
+  "name": "DansLeMeal",
+  "description": "This app permit to manage restaurant.",
   "icons": [
     {
-      "src": "assets/logo/project.svg",
+      "src": "assets/logo/restaurant.svg",
       "sizes": "64x64 32x32 24x24 16x16 192x192 512x512"
     },
     {
-      "src": "assets/logo/mipmap-xxxhdpi/ic_project.png",
+      "src": "assets/logo/mipmap-xxxhdpi/ic_restaurant.png",
       "sizes": "192x192"
     },
     {

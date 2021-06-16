@@ -37,16 +37,16 @@ class HomePage extends Component {
             <strong>GetUserInformation</strong>: get user datas by id
           </li>
           <li>
-            <strong>GetProjectsList</strong>: get all the projects (by user)
+            <strong>GetRestaurantsList</strong>: get all the restaurants (by user)
           </li>
           <li>
-            <strong>GetProject</strong>: get a project by id
+            <strong>GetRestaurant</strong>: get a restaurant by id
           </li>
           <li>
-            <strong>GetTasksList</strong>: get all the tasks by project
+            <strong>GetMealsList</strong>: get all the meals by restaurant
           </li>
           <li>
-            <strong>GetTask</strong>: get a task by id
+            <strong>GetMeal</strong>: get a meal by id
           </li>
         </ul>
 

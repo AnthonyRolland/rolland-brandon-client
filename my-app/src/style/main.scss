@@ -1,13 +1,13 @@
-.project-list-item {
+.restaurant-list-item {
   display: flex;
   flex-direction: row;
-  .project-item-action {
+  .restaurant-item-action {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-end;
   }
-  .project-item-detail {
+  .restaurant-item-detail {
     flex: 1;
   }
 }
@@ -35,7 +35,7 @@ button {
   a {
     padding: .5em;
     flex: 1 1;
-    background: #101d40;
+    background: #251d1d;
     display: flex;
     flex-direction: column;
     align-items: center;

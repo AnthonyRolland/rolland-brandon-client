@@ -6,12 +6,12 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 
 const GET_PROJECT = gql`
-  query Projects($id: ID!) {
-    project(_id: $id) {
+  query Restaurants($id: ID!) {
+    restaurant(_id: $id) {
       _id
       name
       description
-      tasks {
+      meals {
         _id
         name
         description
@@ -21,7 +21,7 @@ const GET_PROJECT = gql`
   }
 `;
 
-function Project({ arg, id }) {
+function Restaurant({ arg, id }) {
   const { loading, error, data } = useQuery(GET_PROJECT, {
     variables: { id }
   });
@@ -31,20 +31,20 @@ function Project({ arg, id }) {
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
-  const project = data.project;
-  console.log("Data received from Project: ", project);
+  const restaurant = data.restaurant;
+  console.log("Data received from Restaurant: ", restaurant);
   return (
     <div>
       <h2>
-        {project.name}
+        {restaurant.name}
       </h2>
       <p>
-        {project.description}
+        {restaurant.description}
       </p>
       <ul>
-        {project.tasks.map(item =>
-          <li key={item._id} value={item.name} className="project-list-item" onClick={() => changeRoute(arg, ("/task/" + item._id.toString()))}>
-            <div className="project-item-detail">
+        {restaurant.meals.map(item =>
+          <li key={item._id} value={item.name} className="restaurant-list-item" onClick={() => changeRoute(arg, ("/meal/" + item._id.toString()))}>
+            <div className="restaurant-item-detail">
               <h3>
                 {item.name}
               </h3>
@@ -52,36 +52,36 @@ function Project({ arg, id }) {
                 {item.description}
               </p>
             </div>
-            <div className="project-item-action">
+            <div className="restaurant-item-action">
               <IoIosClose
                 fontSize="1.75em"
                 color="tomato"
-                onClick={callMutationToCancelTask}
+                onClick={callMutationToCancelMeal}
               />
               <IoMdCheckmark
                 fontSize="1.75em"
                 color="lightseagreen"
-                onClick={callMutationToValidateTask}
+                onClick={callMutationToValidateMeal}
               />
             </div>
           </li>
         )}
-        <li className="project-list-item" onClick={callMutation}>
+        <li className="restaurant-list-item" onClick={callMutation}>
           <div
-            className="project-item-action"
+            className="restaurant-item-action"
             style={{
               padding: "1em"
             }}
           >
             <FaPlusSquare fontSize="1.5em" />
           </div>
-          <div className="project-item-detail">
-            <h3>Add new task</h3>
+          <div className="restaurant-item-detail">
+            <h3>Add new meal</h3>
           </div>
         </li>
       </ul>
 
-      {project.tasks.length === 0 &&
+      {restaurant.meals.length === 0 &&
         <div
           style={{
             display: "flex",
@@ -94,20 +94,20 @@ function Project({ arg, id }) {
             alt="Not found"
             src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/no_data_qbuo.svg"
           />
-          <h4>This project did not contain any task.</h4>
+          <h4>This restaurant did not contain any meal.</h4>
         </div>}
     </div>
   );
 }
 
-function callMutationToValidateTask() {
-  alert("Development information: \n Call a mutation to validate this task");
+function callMutationToValidateMeal() {
+  alert("Development information: \n Call a mutation to validate this meal");
 }
-function callMutationToCancelTask() {
-  alert("Development information: \n Call a mutation to cancel this task");
+function callMutationToCancelMeal() {
+  alert("Development information: \n Call a mutation to cancel this meal");
 }
 function callMutation() {
-  alert("Development information: \n Call a mutation to add a new task");
+  alert("Development information: \n Call a mutation to add a new meal");
 }
 
 function changeRoute(props, route) {
@@ -120,7 +120,7 @@ class ProjetDetail extends Component {
     console.log(this);
     return (
       <div className="container">
-        <Project arg={this.props} id={this.props.match.params.id} />
+        <Restaurant arg={this.props} id={this.props.match.params.id} />
       </div>
     );
   }

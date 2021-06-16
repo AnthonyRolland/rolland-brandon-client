@@ -19,10 +19,10 @@ class Navbar extends Component {
               <p>Profile</p>
             </li>
           </Link>
-          <Link to="/projects">
+          <Link to="/restaurants">
             <li>
               <FaProjectDiagram />
-              <p>Projects</p>
+              <p>Restaurants</p>
             </li>
           </Link>
         </ul>

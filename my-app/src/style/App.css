@@ -21,7 +21,7 @@ body{
 
 
 .App {
-  background-color: rgb(11, 25, 36);
+  background-color: rgb(103, 108, 112);
   display: flex;
   flex-direction: column;
   color: white;
@@ -31,7 +31,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #101d40;
+  background: #292020;
 }
 
 .navbar-icon{
@@ -79,7 +79,7 @@ body{
   bottom: 0;
   right: 4em;
   padding: 1em;
-  background: #494949;
+  background: #bdb4b4;
 }
 
 .status-ok {
@@ -105,9 +105,9 @@ ul{
   padding: 0;
 }
 
-.project-list-item{
+.restaurant-list-item{
   border-radius: 12px;
   padding: .25em 1.5em;    
-  background: #122041;
+  background: #773232;
   margin-bottom: 1em;
 }

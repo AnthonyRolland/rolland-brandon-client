@@ -5,23 +5,23 @@ import gql from "graphql-tag";
 
 
 const ADD_PROJECT = gql`
-  mutation CreateProject($name: String! ,$description: String!) {
-    createProject(name: $name, description: $description)
+  mutation CreateRestaurant($name: String! ,$description: String!) {
+    createRestaurant(name: $name, description: $description)
   }
 `;
 
 
-function AddProject() {
+function AddRestaurant() {
     let name;
     let description;
-    const [addProject, { data }] = useMutation(ADD_PROJECT);
+    const [addRestaurant, { data }] = useMutation(ADD_PROJECT);
   
     return (
       <div>
         <form
           onSubmit={e => {
             e.preventDefault();
-            addProject({ variables: { name: name.value, description: description.value } });
+            addRestaurant({ variables: { name: name.value, description: description.value } });
             name.value = '';
             description.value = '';
           }}
@@ -40,7 +40,7 @@ function AddProject() {
         />
         <div className="margin-v-m">
 
-        <button type="submit" className="btn-primary">Create project</button>
+        <button type="submit" className="btn-primary">Create restaurant</button>
         </div>
         </form>
       </div>
@@ -52,8 +52,8 @@ class ProjetDetail extends Component {
     console.log(this);
     return (
       <div className="container">
-        <h4>Create a new project</h4>
-        <AddProject />
+        <h4>Create a new restaurant</h4>
+        <AddRestaurant />
       </div>
     );
   }

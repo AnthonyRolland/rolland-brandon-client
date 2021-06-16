@@ -6,7 +6,6 @@ import "./style/index.css";
 import * as serviceWorker from "./serviceWorker";
 import { ApolloProvider } from "@apollo/react-hooks";
 import ApolloClient, { InMemoryCache, gql } from 'apollo-boost';
-//npm install apollo-boost @apollo/react-hooks graphql
 
 const client = new ApolloClient({
   uri: 'http://localhost:4000/',
@@ -35,10 +34,9 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// Ask for notification
 Notification.requestPermission( function(status) {
-  console.log(status); // les notifications ne seront affichées que si "autorisées"
-  var n = new Notification("title", {body: "notification body"}); // this also shows the notification
+  console.log(status); 
+  var n = new Notification("title", {body: "notification body"});
 });
 
 serviceWorker.register();

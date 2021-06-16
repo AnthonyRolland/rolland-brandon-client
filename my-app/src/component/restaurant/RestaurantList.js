@@ -10,10 +10,10 @@ import { withRouter } from 'react-router-dom';
 
 const GET_PROJECTS = gql`
   {
-    projects {
+    restaurants {
       _id
       name
-      tasks{
+      meals{
         name
       }
     }
@@ -21,8 +21,8 @@ const GET_PROJECTS = gql`
 `;
 
 
-// Project QUERY
-function Projects(arg) {
+// Restaurant QUERY
+function Restaurants(arg) {
   const { loading, error, data } = useQuery(GET_PROJECTS);
 
   if (loading) return "Loading...";
@@ -30,32 +30,32 @@ function Projects(arg) {
 
   return (
     <ul>
-      {data.projects.map(item =>
-        <li key={item._id} value={item.name} className="project-list-item">
+      {data.restaurants.map(item =>
+        <li key={item._id} value={item.name} className="restaurant-list-item">
          
-         <div className="project-item-detail">
+         <div className="restaurant-item-detail">
             <h3>
               {item.name}
             </h3>
             <p>
-              {item.tasks.length} tasks in this project.
+              {item.meals.length} meals in this restaurant.
             </p>
           </div>
-          <div className="project-item-action">
+          <div className="restaurant-item-action">
             <IoIosClose onClick={() => callMutation() } fontSize="1.75em"/>
-            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/project/" + item._id.toString()) )}>View</button>
+            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/restaurant/" + item._id.toString()) )}>View</button>
           </div>
         </li>
       )}
-      <li className="project-list-item" onClick={() => handleCreateNewProject(arg.props)}>
-          <div className="project-item-action" style={{
+      <li className="restaurant-list-item" onClick={() => handleCreateNewRestaurant(arg.props)}>
+          <div className="restaurant-item-action" style={{
             padding: "1em"
           }}>
             <FaPlusSquare fontSize="1.5em"/>
           </div>
-         <div className="project-item-detail">
+         <div className="restaurant-item-detail">
             <h3>
-              Create a new project
+              Create a new restaurant
             </h3>
           </div>
         </li>
@@ -69,22 +69,22 @@ function changeRoute(props, route) {
   props.history.push(route)
 }
 
-function handleCreateNewProject(props) {
+function handleCreateNewRestaurant(props) {
   console.log(props)
-  props.history.push('/new-project')
-  alert("Development information: \n Call a mutation to create a new project");
+  props.history.push('/new-restaurant')
+  alert("Development information: \n Call a mutation to create a new restaurant");
 }
 
 function callMutation() {
-  alert("Development information: \n Call a mutation to delete this project");
+  alert("Development information: \n Call a mutation to delete this restaurant");
 }
 
 class ProjetList extends React.Component {
   render() {
     return (
       <div className="container">
-        <h4>List of all projects.</h4>
-        <Projects props={this.props}/>
+        <h4>List of all restaurants.</h4>
+        <Restaurants props={this.props}/>
       </div>
     );
   }

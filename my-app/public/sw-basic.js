@@ -1,7 +1,7 @@
 var CACHE_NAME = 'basic-sw-cache-v1';
 var urlsToCache = [
   '/index.html',
-  '/assets/logo/project.svg',
+  '/assets/logo/restaurant.svg',
   'static/js/bundle.js',
   'static/js/0.chunk.js',
   'static/js/main.chunk.js',

@@ -4,13 +4,13 @@ import "./style/App.css";
 import HomePage from "./component/common/Home";
 import UserPage from "./component/user/UserPage";
 import ProfilPage from "./component/common/ProfilPage";
-import TaskList from "./component/task/TaskList";
-import TaskDetail from "./component/task/TaskDetail";
-import ProjectList from "./component/project/ProjectList";
-import ProjectDetail from "./component/project/ProjectDetail";
+import MealList from "./component/meal/MealList";
+import MealDetail from "./component/meal/MealDetail";
+import RestaurantList from "./component/restaurant/RestaurantList";
+import RestaurantDetail from "./component/restaurant/RestaurantDetail";
 import Header from "./component/common/Header";
 import Navbar from "./component/common/Navbar";
-import ProjectCreate from "./component/project/ProjectCreate";
+import RestaurantCreate from "./component/restaurant/RestaurantCreate";
 
 function App() {
   return (
@@ -27,20 +27,20 @@ function App() {
           <Route path="/user/:id">
             <UserPage />
           </Route>
-          <Route path="/tasks">
-            <TaskList />
+          <Route path="/meals">
+            <MealList />
           </Route>
-          <Route path="/task/:id">
-            <TaskDetail />
+          <Route path="/meal/:id">
+            <MealDetail />
           </Route>
-          <Route path="/projects/">
-            <ProjectList />
+          <Route path="/restaurants/">
+            <RestaurantList />
           </Route>
-          <Route path="/project/:id">
-            <ProjectDetail />
+          <Route path="/restaurant/:id">
+            <RestaurantDetail />
           </Route>
-          <Route path="/new-project">
-            <ProjectCreate />
+          <Route path="/new-restaurant">
+            <RestaurantCreate />
           </Route>
         </Switch>
       </div>
