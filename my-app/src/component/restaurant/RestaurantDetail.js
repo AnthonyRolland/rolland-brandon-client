@@ -10,12 +10,13 @@ const GET_PROJECT = gql`
     restaurant(_id: $id) {
       _id
       name
-      description
+      slogan
       meals {
         _id
         name
         description
-        status
+        type
+        price
       }
     }
   }
@@ -39,7 +40,7 @@ function Restaurant({ arg, id }) {
         {restaurant.name}
       </h2>
       <p>
-        {restaurant.description}
+        {restaurant.slogan}
       </p>
       <ul>
         {restaurant.meals.map(item =>
@@ -49,7 +50,7 @@ function Restaurant({ arg, id }) {
                 {item.name}
               </h3>
               <p>
-                {item.description}
+                {item.slogan}
               </p>
             </div>
             <div className="restaurant-item-action">

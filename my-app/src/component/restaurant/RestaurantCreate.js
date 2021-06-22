@@ -5,15 +5,15 @@ import gql from "graphql-tag";
 
 
 const ADD_PROJECT = gql`
-  mutation CreateRestaurant($name: String! ,$description: String!) {
-    createRestaurant(name: $name, description: $description)
+  mutation CreateRestaurant($name: String! ,$slogan: String!) {
+    createRestaurant(name: $name, slogan: $slogan)
   }
 `;
 
 
 function AddRestaurant() {
     let name;
-    let description;
+    let slogan;
     const [addRestaurant, { data }] = useMutation(ADD_PROJECT);
   
     return (
@@ -21,9 +21,9 @@ function AddRestaurant() {
         <form
           onSubmit={e => {
             e.preventDefault();
-            addRestaurant({ variables: { name: name.value, description: description.value } });
+            addRestaurant({ variables: { name: name.value, slogan: slogan.value } });
             name.value = '';
-            description.value = '';
+            slogan.value = '';
           }}
         >
         <p>Title:</p>
@@ -32,10 +32,10 @@ function AddRestaurant() {
             name = node;
           }}
         />
-        <p>Description:</p>
+        <p>Slogan:</p>
         <input
           ref={node => {
-            description = node;
+            slogan = node;
           }}
         />
         <div className="margin-v-m">

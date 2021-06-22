@@ -5,16 +5,19 @@ import { IoIosClose } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
 import {style } from "../../style/main.scss";
 import { withRouter } from 'react-router-dom';
-//npm install graphql-tag
-//npm install @apollo/react-hooks
 
-const GET_PROJECTS = gql`
+const GET_RESTAURANTS = gql`
   {
     restaurants {
       _id
       name
-      meals{
+      slogan
+      meals {
+        _id
         name
+        description
+        type
+        price
       }
     }
   }
@@ -22,9 +25,10 @@ const GET_PROJECTS = gql`
 
 
 // Restaurant QUERY
-function Restaurants(arg) {
-  const { loading, error, data } = useQuery(GET_PROJECTS);
+function Restaurant(arg) {
+  const { loading, error, data } = useQuery(GET_RESTAURANTS);
 
+  
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
@@ -83,8 +87,8 @@ class ProjetList extends React.Component {
   render() {
     return (
       <div className="container">
-        <h4>List of all restaurants.</h4>
-        <Restaurants props={this.props}/>
+        <h4>Liste de tous les Restaurants</h4>
+        <Restaurant props={this.props}/>
       </div>
     );
   }
