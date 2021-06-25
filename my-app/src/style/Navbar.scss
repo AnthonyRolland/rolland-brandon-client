@@ -1,0 +1,26 @@
+.nav {
+    display: flex;
+    padding-top: 8px;
+    margin-right: 10px;
+  
+    .nav-list {
+      list-style: none;
+      display: flex;
+      padding: 0;
+  
+      .link {
+        color: #fffbff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 8px 20px;
+        margin: 20px 5px 5px 10px;
+        background-color: #0c0c1b;
+  
+        &:hover {
+          background: #0c0c18;
+        
+        }
+      }
+    }
+  }

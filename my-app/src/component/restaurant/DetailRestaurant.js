@@ -14,9 +14,6 @@ const GET_PROJECT = gql`
       meals {
         _id
         name
-        description
-        type
-        price
       }
     }
   }
@@ -27,13 +24,10 @@ function Restaurant({ arg, id }) {
     variables: { id }
   });
 
-  console.log(arg, id)
-
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
 
   const restaurant = data.restaurant;
-  console.log("Data received from Restaurant: ", restaurant);
   return (
     <div>
       <h2>
@@ -77,26 +71,16 @@ function Restaurant({ arg, id }) {
             <FaPlusSquare fontSize="1.5em" />
           </div>
           <div className="restaurant-item-detail">
-            <h3>Add new meal</h3>
+            <h3>Ajouter un nouveau meal</h3>
           </div>
         </li>
       </ul>
 
       {restaurant.meals.length === 0 &&
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            flexDirection: "column"
-          }}
-        >
-          <img
-            width="10%"
-            alt="Not found"
-            src="https://42f2671d685f51e10fc6-b9fcecea3e50b3b59bdc28dead054ebc.ssl.cf5.rackcdn.com/illustrations/no_data_qbuo.svg"
-          />
-          <h4>This restaurant did not contain any meal.</h4>
-        </div>}
+        <div>
+          <h4>Ce restaurant n'a encore aucun repas de disponible</h4>
+        </div>
+        }
     </div>
   );
 }
@@ -112,7 +96,6 @@ function callMutation() {
 }
 
 function changeRoute(props, route) {
-  console.log(props, route);
   props.history.push(route);
 }
 

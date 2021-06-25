@@ -1,12 +1,13 @@
 import React from "react";
 import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from '@apollo/react-hooks';
 import { IoIosClose } from "react-icons/io";
 import { FaPlusSquare } from "react-icons/fa";
-import {style } from "../../style/main.scss";
 import { withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const GET_RESTAURANTS = gql`
+
+export const GET_RESTAURANTS = gql`
   {
     restaurants {
       _id
@@ -15,19 +16,29 @@ const GET_RESTAURANTS = gql`
       meals {
         _id
         name
-        description
-        type
-        price
       }
     }
   }
 `;
 
+const DELETE_RESTAURANT = gql`
+    mutation deleteRestaurant($id: ID!) {
+      deleteRestaurant(_id: $id)
+    }
+`;
 
 // Restaurant QUERY
 function Restaurant(arg) {
   const { loading, error, data } = useQuery(GET_RESTAURANTS);
+  const [deleteRestaurant] = useMutation(DELETE_RESTAURANT);
 
+  const onDeleteRestaurant = (event, id) => {
+    event.preventDefault();
+    deleteRestaurant({
+      variables: { id },
+    });
+    data.restaurants = data.restaurants.filter((restaurant) => restaurant._id !== id);
+  };
   
   if (loading) return "Loading...";
   if (error) return `Error! ${error.message}`;
@@ -42,12 +53,13 @@ function Restaurant(arg) {
               {item.name}
             </h3>
             <p>
-              {item.meals.length} meals in this restaurant.
+              {item.meals.length} meals disponible dans ce restaurant.
             </p>
           </div>
           <div className="restaurant-item-action">
-            <IoIosClose onClick={() => callMutation() } fontSize="1.75em"/>
-            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/restaurant/" + item._id.toString()) )}>View</button>
+            <IoIosClose onClick={(e) => onDeleteRestaurant(e, item._id)} fontSize="1.75em"/>
+            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/restaurant/" + item._id.toString()) )}>Voir détail</button>
+            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/restaurant/edit/" + item._id.toString()) )}>Modifier</button>
           </div>
         </li>
       )}
@@ -59,7 +71,7 @@ function Restaurant(arg) {
           </div>
          <div className="restaurant-item-detail">
             <h3>
-              Create a new restaurant
+              Créer un nouveau restaurant
             </h3>
           </div>
         </li>
@@ -69,18 +81,11 @@ function Restaurant(arg) {
 
 
 function changeRoute(props, route) {
-  console.log(props, route);
   props.history.push(route)
 }
 
 function handleCreateNewRestaurant(props) {
-  console.log(props)
-  props.history.push('/new-restaurant')
-  alert("Development information: \n Call a mutation to create a new restaurant");
-}
-
-function callMutation() {
-  alert("Development information: \n Call a mutation to delete this restaurant");
+  props.history.push('/restaurant/add')
 }
 
 class ProjetList extends React.Component {

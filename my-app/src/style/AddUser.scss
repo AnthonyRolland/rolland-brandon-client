@@ -1,0 +1,41 @@
+.AddUser {
+    width: 80%;
+    margin: auto;
+    height: 10rem;
+  
+    .name-input,
+    .surname-input,
+    .login-input,
+    .password-input {
+      width: 300px;
+      display: flex;
+      justify-content: space-between;
+    }
+  
+    form {
+      height: 16em;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+    }
+  
+    .add-user-button {
+      margin-top: 3em;
+  
+      .link {
+        margin-right: 1em !important;
+        color: #fffbff;
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: bold;
+        padding: 13px 25px;
+        margin: 20px 5px 5px 0;
+        border-radius: 4%;
+        background: #6060b9;
+  
+        &:hover {
+        background: #343468;
+        }
+      }
+    }
+  }

@@ -1,72 +1,63 @@
+import { Fragment, useState } from 'react';
+import Navbar from './Navbar';
+import '../../style/Header.scss';
+import { FiMenu } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import React, { Component } from "react";
-import logo from "../../logo.svg";
-import { FiMenu } from "react-icons/fi";
-import { FaRegUserCircle } from "react-icons/fa";
-import { withRouter,Link } from "react-router-dom";
 
-class HomePage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      navbarOpen: false
-    };
 
-    this.toggleNavbar.bind(this);
-    this.handleClick.bind(this);
-  }
+export default function Header(props) {
+  const [navbarOpen, setNavbarOpen] = useState({ navbarOpen: false });
 
-  toggleNavbar() {
-    this.setState({
-      navbarOpen: !this.state.navbarOpen
-    });
-  }
+  const toggleNavbar = () => {
+    setNavbarOpen(!navbarOpen);
+  };
 
-  handleClick(){
-    this.props.history.push("/home")
-  }
-
-  render() {
-    return (
-      <div className="header">
-        <div onClick={() => this.toggleNavbar()}>
-          <FiMenu className="navbar-icon" />
+  return (
+    <Fragment>
+      <div className='header'>
+        <div onClick={() => toggleNavbar()}>
+          <FiMenu className='fi-menu' />
         </div>
-        <div className="title-with-logo" onClick={() => this.handleClick()}>
-          <img  className="app-logo" alt="logo" />
-          <h2 className="header-title">Dans le Meal</h2>
+        <div className='title-with-logo'>
+          <h2>Dans le Meal</h2>
         </div>
-        <div>
-          <FaRegUserCircle className="navbar-icon" />
-        </div>
-        {this.state.navbarOpen &&
-          <div className="sidebar">
-            <h2>Menu</h2>
-            <ul className="sidebar-list">
-              <li>
-                <Link onClick={() => this.toggleNavbar()} to="/home">
-                  Home Page
-                </Link>
-              </li>
-              <li>
-                <Link onClick={() => this.toggleNavbar()} to="/me">
-                  Profile Page
-                </Link>
-              </li>
-              <li>
-                <Link onClick={() => this.toggleNavbar()} to="/restaurants">
-                  Restaurants Page
-                </Link>
-              </li>
-              <li>
-                <Link onClick={() => this.toggleNavbar()} to="/meals">
-                  Meals Page
-                </Link>
-              </li>
-            </ul>
-          </div>}
+        <span className='filler'></span>
+        {navbarOpen === true && (
+          <Fragment>
+            <div className='sidebar-list'>
+              <nav className='nav'>
+                <ul>
+                  <li>
+                    <Link onClick={() => toggleNavbar()}
+                      to='/home'
+                      className='link'
+                    >
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={() => toggleNavbar()}
+                      to='/restaurant'
+                      className='link'
+                    >
+                      Restaurant
+                    </Link>
+                  </li>
+                  <li>
+                    <Link onClick={() => toggleNavbar()}
+                      to='/user'
+                      className='link'
+                    >
+                      User
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </Fragment>
+        )}
       </div>
-    );
-  }
+    </Fragment>
+  );
 }
-
-export default withRouter(HomePage);

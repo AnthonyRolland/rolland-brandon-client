@@ -2,15 +2,17 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./style/App.css";
 import HomePage from "./component/common/Home";
-import UserPage from "./component/user/UserPage";
-import ProfilPage from "./component/common/ProfilPage";
+import User from './component/user/User';
+import AddUser from './component/user/AddUser';
+import EditUser from './component/user/EditUser';
 import MealList from "./component/meal/MealList";
 import MealDetail from "./component/meal/MealDetail";
-import RestaurantList from "./component/restaurant/RestaurantList";
-import RestaurantDetail from "./component/restaurant/RestaurantDetail";
+import Restaurant from "./component/restaurant/Restaurant";
+import DetailRestaurant from "./component/restaurant/DetailRestaurant";
+import EditRestaurant from "./component/restaurant/EditRestaurant";
 import Header from "./component/common/Header";
 import Navbar from "./component/common/Navbar";
-import RestaurantCreate from "./component/restaurant/RestaurantCreate";
+import AddRestaurant from "./component/restaurant/AddRestaurant";
 
 function App() {
   return (
@@ -21,12 +23,6 @@ function App() {
           <Route path="/home">
             <HomePage />
           </Route>
-          <Route path="/me">
-            <ProfilPage />
-          </Route>
-          <Route path="/user/:id">
-            <UserPage />
-          </Route>
           <Route path="/meals">
             <MealList />
           </Route>
@@ -34,14 +30,26 @@ function App() {
             <MealDetail />
           </Route>
           <Route path="/restaurants/">
-            <RestaurantList />
+            <Restaurant />
           </Route>
           <Route path="/restaurant/:id">
-            <RestaurantDetail />
+            <DetailRestaurant />
           </Route>
-          <Route path="/new-restaurant">
-            <RestaurantCreate />
+          <Route path="/restaurant/edit/:_id">
+            <EditRestaurant />
           </Route>
+          <Route path="/restaurant/add">
+            <AddRestaurant />
+          </Route>
+          <Route exact path='/user'>
+            <User />
+          </Route>
+          <Route exact path='/user/add'>
+            <AddUser />
+          </Route>
+          <Route exact path='/user/edit/:_id'>
+            <EditUser />
+            </Route>
         </Switch>
       </div>
       <Navbar />

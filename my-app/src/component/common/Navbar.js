@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { FaRegUserCircle, FaHome, FaProjectDiagram } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import '../../style/Navbar.scss';
 
 class Navbar extends Component {
   render() {
@@ -9,20 +9,17 @@ class Navbar extends Component {
         <ul className="nav-list">
           <Link to="/home">
             <li>
-              <FaHome />
               <p>Home</p>
-            </li>
-          </Link>
-          <Link to="/me">
-            <li>
-              <FaRegUserCircle />
-              <p>Profile</p>
             </li>
           </Link>
           <Link to="/restaurants">
             <li>
-              <FaProjectDiagram />
               <p>Restaurants</p>
+            </li>
+          </Link>
+          <Link to="/user">
+            <li>
+              <p>User</p>
             </li>
           </Link>
         </ul>

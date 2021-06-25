@@ -4,9 +4,10 @@ import { withRouter } from "react-router-dom";
 import gql from "graphql-tag";
 
 
-const ADD_PROJECT = gql`
+const ADD_RESTAURANT = gql`
   mutation CreateRestaurant($name: String! ,$slogan: String!) {
     createRestaurant(name: $name, slogan: $slogan)
+
   }
 `;
 
@@ -14,7 +15,7 @@ const ADD_PROJECT = gql`
 function AddRestaurant() {
     let name;
     let slogan;
-    const [addRestaurant, { data }] = useMutation(ADD_PROJECT);
+    const [addRestaurant, { data }] = useMutation(ADD_RESTAURANT);
   
     return (
       <div>
@@ -22,11 +23,10 @@ function AddRestaurant() {
           onSubmit={e => {
             e.preventDefault();
             addRestaurant({ variables: { name: name.value, slogan: slogan.value } });
-            name.value = '';
-            slogan.value = '';
+            this.props.history.push('/restaurants');
           }}
         >
-        <p>Title:</p>
+        <p>Nom:</p>
         <input
           ref={node => {
             name = node;
@@ -37,10 +37,9 @@ function AddRestaurant() {
           ref={node => {
             slogan = node;
           }}
-        />
+        />  
         <div className="margin-v-m">
-
-        <button type="submit" className="btn-primary">Create restaurant</button>
+             <button type="submit" className="btn-primary"> Valider</button>
         </div>
         </form>
       </div>
@@ -49,11 +48,10 @@ function AddRestaurant() {
 
 class ProjetDetail extends Component {
   render() {
-    console.log(this);
     return (
       <div className="container">
-        <h4>Create a new restaurant</h4>
-        <AddRestaurant />
+        <h4>Créer un nouveau restaurant :</h4>
+        <AddRestaurant props={this.props}/>
       </div>
     );
   }
