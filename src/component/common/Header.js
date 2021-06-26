@@ -1,10 +1,9 @@
 import { Fragment, useState } from 'react';
+import React, { Component } from "react";
 import Navbar from './Navbar';
 import '../../style/Header.scss';
 import { FiMenu } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-import React, { Component } from "react";
-
 
 export default function Header(props) {
   const [navbarOpen, setNavbarOpen] = useState({ navbarOpen: false });
@@ -29,7 +28,8 @@ export default function Header(props) {
               <nav className='nav'>
                 <ul>
                   <li>
-                    <Link onClick={() => toggleNavbar()}
+                    <Link
+                      onClick={() => toggleNavbar()}
                       to='/home'
                       className='link'
                     >
@@ -37,15 +37,17 @@ export default function Header(props) {
                     </Link>
                   </li>
                   <li>
-                    <Link onClick={() => toggleNavbar()}
-                      to='/restaurant'
+                    <Link
+                      onClick={() => toggleNavbar()}
+                      to='/restaurants'
                       className='link'
                     >
                       Restaurant
                     </Link>
                   </li>
                   <li>
-                    <Link onClick={() => toggleNavbar()}
+                    <Link
+                      onClick={() => toggleNavbar()}
                       to='/user'
                       className='link'
                     >
@@ -57,6 +59,7 @@ export default function Header(props) {
             </div>
           </Fragment>
         )}
+        <Navbar />
       </div>
     </Fragment>
   );

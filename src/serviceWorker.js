@@ -36,9 +36,9 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       // To use Workbox
-      //const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      const swUrl = `${process.env.PUBLIC_URL}/sw.js`;
       // To use custom
-      const swUrl = `${process.env.PUBLIC_URL}/sw-offline-page.js`;
+    //  const swUrl = `${process.env.PUBLIC_URL}/sw-offline-page.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
