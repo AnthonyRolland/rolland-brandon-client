@@ -1,10 +1,10 @@
 import React from "react";
 import gql from "graphql-tag";
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import { IoIosClose } from "react-icons/io";
-import { FaPlusSquare } from "react-icons/fa";
-import { withRouter } from 'react-router-dom';
+import { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import '../../style/Restaurant.scss';
+
 
 
 export const GET_RESTAURANTS = gql`
@@ -27,8 +27,9 @@ const DELETE_RESTAURANT = gql`
     }
 `;
 
-// Restaurant QUERY
-function Restaurant(arg) {
+
+export default function Restaurant(props) {
+
   const { loading, error, data } = useQuery(GET_RESTAURANTS);
   const [deleteRestaurant] = useMutation(DELETE_RESTAURANT);
 
@@ -39,64 +40,71 @@ function Restaurant(arg) {
     });
     data.restaurants = data.restaurants.filter((restaurant) => restaurant._id !== id);
   };
-  
-  if (loading) return "Loading...";
-  if (error) return `Error! ${error.message}`;
 
-  return (
-    <ul>
-      {data.restaurants.map(item =>
-        <li key={item._id} value={item.name} className="restaurant-list-item">
-         
-         <div className="restaurant-item-detail">
-            <h3>
-              {item.name}
-            </h3>
-            <p>
-              {item.meals.length} meals disponible dans ce restaurant.
-            </p>
-          </div>
-          <div className="restaurant-item-action">
-            <IoIosClose onClick={(e) => onDeleteRestaurant(e, item._id)} fontSize="1.75em"/>
-            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/restaurant/" + item._id.toString()) )}>Voir détail</button>
-            <button className="btn-primary" onClick={() => changeRoute(arg.props,("/restaurant/edit/" + item._id.toString()) )}>Modifier</button>
-          </div>
-        </li>
-      )}
-      <li className="restaurant-list-item" onClick={() => handleCreateNewRestaurant(arg.props)}>
-          <div className="restaurant-item-action" style={{
-            padding: "1em"
-          }}>
-            <FaPlusSquare fontSize="1.5em"/>
-          </div>
-         <div className="restaurant-item-detail">
-            <h3>
-              Créer un nouveau restaurant
-            </h3>
-          </div>
-        </li>
-    </ul>
-  );
-}
-
-
-function changeRoute(props, route) {
-  props.history.push(route)
-}
-
-function handleCreateNewRestaurant(props) {
-  props.history.push('/restaurant/add')
-}
-
-class ProjetList extends React.Component {
-  render() {
+  if (loading) {
     return (
-      <div className="container">
-        <h4>Liste de tous les Restaurants</h4>
-        <Restaurant props={this.props}/>
-      </div>
+      <Fragment>
+        <div>Loading...</div>
+      </Fragment>
     );
   }
-}
 
-export default withRouter(ProjetList);
+  if (error) {
+    return (
+      <Fragment>
+        <div>An error occured while retrieving restaurants from server.</div>
+      </Fragment>
+    );
+  }
+
+  return (
+    <Fragment>
+      <div className='Restaurant'>
+        <div className='list-container'>
+          <h2>Liste de tous les restaurants:</h2>
+          <ul>
+            {data.restaurants.map((restaurant) => (
+              <Link
+                key={restaurant._id}
+                className='link-list-restaurant'
+                to={{
+                  pathname: `/restaurant/detail/${restaurant._id}`,
+                  state: { restaurant },
+                }}
+              >
+                <li key={restaurant._id} value={restaurant.name}>
+                  <div>
+                    <h3>{restaurant.name}</h3>
+                  </div>
+                  <div>
+                    <Link
+                      className='link'
+                      to={{
+                        pathname: `/restaurant/edit/${restaurant._id}`,
+                        state: { restaurant },
+                      }}
+                    >
+                      Modifier
+                    </Link>
+                    <Link
+                      className='link'
+                      onClick={(e) => onDeleteRestaurant(e, restaurant._id)}
+                      to='/restaurants'
+                    >
+                      Supprimer
+                    </Link>
+                  </div>
+                </li>
+              </Link>
+            ))}
+          </ul>
+        </div>
+        <div className='add-restaurant-button-list'>
+          <Link to='/restaurant/add' className='link'>
+            Ajouter un restaurant
+          </Link>
+        </div>
+      </div>
+    </Fragment>
+  );
+}

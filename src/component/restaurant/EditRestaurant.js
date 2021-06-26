@@ -5,7 +5,7 @@ import gpl from 'graphql-tag';
 import { useHistory } from 'react-router';
 import { useLocation } from 'react-router-dom';
 import { GET_RESTAURANTS } from './Restaurant';
-//import '../../styles/EditBook.scss';
+import '../../style/EditRestaurant.scss';
 import { Link } from 'react-router-dom';
 
 const UPDATE_RESTAURANT = gpl`
@@ -37,13 +37,13 @@ export default function EditRestaurant(props) {
         },
       },
       refetchQueries: [{ query: GET_RESTAURANTS }],
-    }).then((unusedResponse) => history.push('/restaurant'));
+    }).then((unusedResponse) => history.push('/restaurants'));
   };
 
   return (
     <Fragment>
       <div className='EditRestaurant'>
-        <h2>Modfier le restaurant:</h2>
+        <h2>Modifier le restaurant:</h2>
         <div>
           <form onSubmit={onSubmitForm}>
             <div className='name-input'>
@@ -52,12 +52,12 @@ export default function EditRestaurant(props) {
                 name='name'
                 type='text'
                 required
-                placeholder='Name'
+                placeholder='Nom'
                 value={getData('name')}
                 onChange={(e) => setData('name', e.target.value)}
               />
             </div>
-            <div className='description-input'>
+            <div className='slogan-input'>
               <label>Slogan:</label>
               <input
                 name='slogan'
@@ -70,13 +70,13 @@ export default function EditRestaurant(props) {
             </div>
             <div className='edit-restaurant-button'>
               <Link
-                to='/restaurant'
+                to='/restaurants'
                 className='link'
                 onClick={(e) => onSubmitForm(e)}
               >
                 Modifier le restaurant
               </Link>
-              <Link to='/restaurant' className='link'>
+              <Link to='/restaurants' className='link'>
                 Retour a la liste
               </Link>
             </div>

@@ -5,8 +5,6 @@ import HomePage from "./component/common/Home";
 import User from './component/user/User';
 import AddUser from './component/user/AddUser';
 import EditUser from './component/user/EditUser';
-import MealList from "./component/meal/MealList";
-import MealDetail from "./component/meal/MealDetail";
 import Restaurant from "./component/restaurant/Restaurant";
 import DetailRestaurant from "./component/restaurant/DetailRestaurant";
 import EditRestaurant from "./component/restaurant/EditRestaurant";
@@ -23,23 +21,17 @@ function App() {
           <Route path="/home">
             <HomePage />
           </Route>
-          <Route path="/meals">
-            <MealList />
-          </Route>
-          <Route path="/meal/:id">
-            <MealDetail />
-          </Route>
-          <Route path="/restaurants/">
+          <Route path="/restaurants">
             <Restaurant />
           </Route>
-          <Route path="/restaurant/:id">
-            <DetailRestaurant />
+          <Route exact path='/restaurant/add'>
+            <AddRestaurant />
           </Route>
-          <Route path="/restaurant/edit/:_id">
+          <Route exact path='/restaurant/edit/:id'>
             <EditRestaurant />
           </Route>
-          <Route path="/restaurant/add">
-            <AddRestaurant />
+          <Route exact path='/restaurant/detail/:id'>
+            <DetailRestaurant />
           </Route>
           <Route exact path='/user'>
             <User />

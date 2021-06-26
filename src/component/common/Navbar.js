@@ -14,7 +14,7 @@ export default function Navbar(props) {
             </Link>
           </li>
           <li>
-            <Link to='/restaurant' className='link'>
+            <Link to='/restaurants' className='link'>
               Restaurant
             </Link>
           </li>

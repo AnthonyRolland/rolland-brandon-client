@@ -1,0 +1,76 @@
+.Restaurant {
+    width: 80%;
+    margin: auto;
+    margin-top: 2%;
+    padding-bottom: 2%;
+  
+    .link-list-restaurant {
+      text-decoration: none;
+      color: white;
+    }
+  
+    h2 {
+      margin-bottom: 2em;
+    }
+  
+    ul {
+      padding-inline-start: 0;
+    }
+  
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2.5em;
+      background-color: #9e261e;
+      padding: 1.5em;
+      background: #9e261e;
+      border-radius: 3%;
+  
+      &:hover {
+        background: #b14545;
+      }
+    }
+  
+    .link {
+      color: #fffbff;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 0.8em 1.5em;
+      margin: 20px 5px 5px 10px;
+      border-radius: 3%;
+      background: #e06060;
+  
+      &:hover {
+        background: #461c1c;
+      } 
+    }
+  
+    .add-restaurant-button-list {
+      margin-top: 50px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+  
+  @media (max-width: 900px) {
+    .Restaurant {
+      width: 90%;
+      margin: auto;
+    }
+  
+    .add-restaurant-button-list {
+      margin-top: 1em;
+    }
+  
+    li {
+      flex-direction: column;
+  
+      div {
+        margin-bottom: 2em;
+      }
+    }
+  }
